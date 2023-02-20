@@ -14,6 +14,6 @@ request({url:url , json:true},(error,response)=>{
 //     const BufferData= JSON.stringify(JsonData)
 //     fs.writeFileSync('WeatherData.Json',BufferData)
     
-    console.log("the temp. is  "+ response.body.current.temperature+"  degree out  " +" but it feels like  "+response.body.current.feelslike+"  degree out  ")
+    console.log(response.body.current.weather_descriptions[0]+ " .the temp. is  "+ response.body.current.temperature+"  degree out  " +" but it feels like  "+response.body.current.feelslike+"  degree out  ")
 
 })
