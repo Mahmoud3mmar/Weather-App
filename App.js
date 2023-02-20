@@ -17,3 +17,16 @@ request({url:url , json:true},(error,response)=>{
     console.log(response.body.current.weather_descriptions[0]+ " .the temp. is  "+ response.body.current.temperature+"  degree out  " +" but it feels like  "+response.body.current.feelslike+"  degree out  ")
 
 })
+
+
+
+const GeoUrl='http://api.positionstack.com/v1/forward?access_key=950cf51aa05520dd8fa6fa83a127c7dc&query=1600%20Pennsylvania%20Ave%20NW,%20Washington%20DC'
+
+
+request({url :GeoUrl,json:true},(error,response)=>{
+
+console.log(response.body.data[0].latitude)
+console.log(response.body.data[0].longitude)
+
+
+})
