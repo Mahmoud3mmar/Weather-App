@@ -1,7 +1,7 @@
 const request = require("postman-request")
 const fs = require('fs');
-const GeoCode = require('./utlis');
-const forcast = require('./utlis');
+const GeoCode = require('./utlis/GeoCode');
+const forcast = require('./utlis/ForCast');
 
 
 
@@ -40,43 +40,6 @@ const forcast = require('./utlis');
 
 
 
-forcast(37.8267,-120,(error,data)=>{
-
-    console.log('error',error)
-    console.log('data',data)
-})
-
-
-
-// const GeoUrl='http://api.positionstack.com/v1/forward?access_key=950cf51aa05520dd8fa6fa83a127c7dc&query=1600%255Pennsylvania%20Ave%20NW,%20Washingtons%20DC'
-
-
-// request({url :GeoUrl,json:true},(error,response)=>{
-
-
-
-//     if(error){
-//             //low level error handling
-//         console.log('unable to connet to the GeoCoding Service')
-
-//     }else if(response.body.data[0].length===0){
-//         console.log("unable to find location , try another search ")
-
-
-
-
-//         console.log("unable to find the location")
-
-
-
-//     }else{
-
-//         const latitude = response.body.data[0].latitude
-//         const longitude = response.body.data[0].longitude
-
-//         console.log(latitude)
-//         console.log(longitude)
-//     }
 
 
 
@@ -84,11 +47,33 @@ forcast(37.8267,-120,(error,data)=>{
 
 
 
+const locationinput = process.argv[2]
 
 
-GeoCode('NewYork',(error,data)=>{
+    if(!locationinput){
+        console.log('please provide an address')
+    }else{
 
-    console.log('error',error)
-    console.log('data',data)
+        GeoCode(locationinput,(error,GeoCodeData)=>{
+            
+            if(error){
+            return console.log(error)
+            }
+            
+            
 
-})
+            forcast(GeoCodeData.latitude,GeoCodeData.longitude,(error,ForCastData)=>{
+
+
+                if(error){
+                    return console.log(error)
+                }
+
+
+
+                console.log(GeoCodeData.Name)
+                console.log(ForCastData)
+            })
+
+        })
+    }

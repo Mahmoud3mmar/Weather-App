@@ -5,7 +5,7 @@ const request = require("postman-request")
 
 
 const GeoCode =(address,callback)=>{
-    const url ='http://api.positionstack.com/v1/forward?access_key=950cf51aa05520dd8fa6fa83a127c7dc&query=1600%255'+address+'%20Ave%20NW,%20Washingtons%20DC'
+    const GeoUrl ='http://api.positionstack.com/v1/forward?access_key=950cf51aa05520dd8fa6fa83a127c7dc&query=1600%255'+address+'%20Ave%20NW,%20Washingtons%20DC'
 
     request({url :GeoUrl,json:true},(error,response)=>{
        
