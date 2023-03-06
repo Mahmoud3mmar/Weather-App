@@ -54,7 +54,7 @@ const locationinput = process.argv[2]
         console.log('please provide an address')
     }else{
 
-        GeoCode(locationinput,(error,GeoCodeData)=>{
+        GeoCode(locationinput,(error,{latitude,longitude,Name})=>{
             
             if(error){
             return console.log(error)
@@ -62,7 +62,7 @@ const locationinput = process.argv[2]
             
             
 
-            forcast(GeoCodeData.latitude,GeoCodeData.longitude,(error,ForCastData)=>{
+            forcast(latitude,longitude,(error,ForCastData)=>{
 
 
                 if(error){
@@ -71,7 +71,7 @@ const locationinput = process.argv[2]
 
 
 
-                console.log(GeoCodeData.Name)
+                console.log(Name)
                 console.log(ForCastData)
             })
 
